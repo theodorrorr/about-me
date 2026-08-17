@@ -103,6 +103,15 @@ img{display:block;max-width:100%;}
   position:relative;
   padding:0 5vw 8vw;
   overflow:hidden;
+
+  background-image: 
+    linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.5) 50%, rgba(10, 10, 10, 0.8) 100%),
+    radial-gradient(circle at center, transparent 20%, rgba(0, 0, 0, 0.85) 100%),
+    url('images/face2.jpg'); /* Replace with your image file name/path */
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .hero-left{ position:relative; z-index:2; }
 .hero-eyebrow{
@@ -441,15 +450,15 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
 <body>
 
 <div class="bg-grid"></div>
-<div class="bg-ghost">SEVELLA</div>
+<div class="bg-ghost"></div>
 
 <nav class="floatnav" id="floatnav">
   <a href="#hobbies" data-t="hobbies"><span class="lbl">Interests</span><span class="dot"></span></a>
   <a href="#achievements" data-t="achievements"><span class="lbl">Achievements</span><span class="dot"></span></a>
   <a href="#media" data-t="media"><span class="lbl">Movies</span><span class="dot"></span></a>
   <a href="#music" data-t="music"><span class="lbl">Music</span><span class="dot"></span></a>
-  <a href="#games" data-t="games"><span class="lbl">Games</span><span class="dot"></span></a>
-  <a href="#pc-games" data-t="pc-games"><span class="lbl">PC Games</span><span class="dot"></span></a>
+  <a href="#games" data-t="games"><span class="lbl">Mobile</span><span class="dot"></span></a>
+  <a href="#pc-games" data-t="pc-games"><span class="lbl">Story Games</span><span class="dot"></span></a>
 </nav>
 
 <section class="hero">
@@ -457,14 +466,14 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
   <div class="hero-left">
     <div class="hero-eyebrow">Theodore's</div>
     <h1>ABOUT<br><span class="outline">ME</span></h1>
-    <p class="tag">hiiii if u guys interested then please scroll down, bcs i hope we got the same hobbies or interests that we could talk abt in dms or wa (SO SORRY FOR MY BAD ENGLISH)</p>
+    <p class="tag">If you're interested, please scroll down! I hope we share similar hobbies and interests to talk about.</p>
   </div>
   <div class="hero-right">
-    <div class="rot-label">Scroll aja coy</div>
+    <div class="rot-label">Scroll</div>
     <div class="hero-badges">
-      <span>🍳 i luv cooking sm</span>
-      <span>🎮 jarang ngegem + aku skill isu juga</span>
-      <span>🎧 dengerin lagu apa aja asal ada suaranya</span>
+      <span>🍳 I love cooking</span>
+      <span>🎮 Casual gamer</span>
+      <span>🎧 I enjoy listening to all music genres</span>
     </div>
   </div>
 </section>
@@ -478,17 +487,16 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
     <div class="rule"></div>
   </div>
   <div class="hobby-deck">
-    <div class="hobby-card reveal"><span class="icon">🍳</span><h3>Cooking</h3><p>only cooks western food because its the easiest imo (skill issue actually), and my speciality is making mushroom sauce for spaghetti or steaks</p></div>
-    <div class="hobby-card reveal"><span class="icon">🎣</span><h3>Fishing</h3><p>Well its kinda fun waiting for a bite while doom scrolling, but i rarely go fishing again these days bcs i always use weekends for relaxing</p></div>
-    <div class="hobby-card reveal"><span class="icon">🎮</span><h3>Gaming</h3><p>im not that good at gamings but i've played a lot of different games titles from story to competitive. also having a good time with each of them</p></div>
-    <div class="hobby-card reveal"><span class="icon">🏹</span><h3>Archery</h3><p>Im not very good at it yet bcs i only practiced every weekend and few of my arrows tip broke because sometimes i hit a wall (yeah im suck at it but i love it)</p></div>
-    <div class="hobby-card reveal"><span class="icon">🔭</span><h3>Astronomy</h3><p>reading about space missions, space exploration, planets, and stars because i wanna be an aerospace engineer or an astronaut when i was a kid back then</p></div>
-    <div class="hobby-card reveal"><span class="icon">✈️</span><h3>Aircraft</h3><p>always love learning abt fighter jets and bombers, especially their technical specifications, and their features</p></div>
-    <div class="hobby-card reveal"><span class="icon">🌍</span><h3>Geopolitics</h3><p>i enjoy following world news and international relations. simply because our daily lives depends on it</p></div>
-    <div class="hobby-card reveal"><span class="icon">📈</span><h3>Market Stocks</h3><p>still a beginner at it because analyzing market trends is hard asf</p></div>
-    <div class="hobby-card reveal"><span class="icon">📖</span><h3>Learning Norway's Language</h3><p>im interested in norway's language because some words are similar to english</p></div>
-    <div class="hobby-card reveal"><span class="icon">🎧</span><h3>Music</h3><p>well my playlists and taste of music is actually random because i just listen to whatever sounds good for me</p></div>
-    <div class="hobby-card reveal"><span class="icon">💻</span><h3>Coding</h3><p>i couldn't make this site if i didnt like to code, but sadly i'm not very good at it yet</p></div>
+    <div class="hobby-card reveal"><span class="icon">🍳</span><h3>Cooking</h3><p>i mostly cook western foods because i find it the easiest. my specialty is making homemade mushroom sauce for spaghetti and steaks.</p></div>
+    <div class="hobby-card reveal"><span class="icon">🎣</span><h3>Fishing</h3><p>i enjoy the relaxed process of waiting for a bite. i rarely go fishing these days, since i prefer using my weekends to rest and rot all day on my bed.</p></div>
+    <div class="hobby-card reveal"><span class="icon">🎮</span><h3>Gaming</h3><p>i've explored a wide range of genres from narrative stories to competitive titles and enjoyed every single one.</p></div>
+    <div class="hobby-card reveal"><span class="icon">🏹</span><h3>Archery</h3><p>still developing my skills through weekend practice.</p></div>
+    <div class="hobby-card reveal"><span class="icon">🔭</span><h3>Astronomy</h3><p>always love learning about space missions and exploration because of my childhood dream of becoming an aerospace engineer or astronaut.</p></div>
+    <div class="hobby-card reveal"><span class="icon">✈️</span><h3>Aviation &amp; Aircraft</h3><p>i have an interest in military aviation, particularly studying the technical specifications and design features of fighter jets and bombers.</p></div>
+    <div class="hobby-card reveal"><span class="icon">🌍</span><h3>Geopolitics</h3><p>i closely follow global news and international relations, and still impressed by how geopolitics can affect our daily lives.</p></div>
+    <div class="hobby-card reveal"><span class="icon">📈</span><h3>Stock Market</h3><p>Currently still learning about the fundamentals of equity markets and technical fundamental analysis.</p></div>
+    <div class="hobby-card reveal"><span class="icon">🎧</span><h3>Music</h3><p>i love every genre of music as long as it sounds good to me.</p></div>
+    <div class="hobby-card reveal"><span class="icon">💻</span><h3>Coding</h3><p>Building this website was a fun project, and i'm still working to improve and learn about programming</p></div>
   </div>
 </section>
 
@@ -529,20 +537,20 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
     <div class="rule"></div>
   </div>
   <div class="poster-shelf">
-    <div class="poster reveal"><img src="images/arcane.jpg" class="poster-img" alt=""><span class="type">Series</span><h3>Arcane</h3><p>BEST ANIMATED SERIES OAT</p></div>
-    <div class="poster reveal"><img src="images/shaw.jpg" class="poster-img" alt=""><span class="type">Movie</span><h3>The Shawshank Redemption</h3><p>its just that good</p></div>
-    <div class="poster reveal"><img src="images/tbhx.jpg" class="poster-img" alt=""><span class="type">Series</span><h3>To Be Hero X</h3><p>my first ever donghua and unexpectedly amazing</p></div>
-    <div class="poster reveal"><img src="images/cpe.jpg" class="poster-img" alt=""><span class="type">Series</span><h3>Cyberpunk: Edgerunners</h3><p>wish we could go to the moon together</p></div>
-    <div class="poster reveal"><img src="images/phm.jpg" class="poster-img" alt=""><span class="type">Movie</span><h3>Project Hail Mary</h3><p>i just fell in love w this movie</p></div>
-    <div class="poster reveal"><img src="images/demonc.jpg" class="poster-img" alt=""><span class="type">Movie</span><h3>Demon City</h3><p>sumpah ini wajahnya si mc kaya ariel noah</p></div>
-    <div class="poster reveal"><img src="images/fnaf.jpg" class="poster-img" alt=""><span class="type">Movie</span><h3>Fnaf</h3><p>okay i get it, the movie is actually not that good but i swear i've been waiting this since 7yo</p></div>
+    <div class="poster reveal"><img src="images/arcane.jpg" class="poster-img" alt=""><span class="type">Series</span><h3>Arcane</h3><p></p></div>
+    <div class="poster reveal"><img src="images/shaw.jpg" class="poster-img" alt=""><span class="type">Movie</span><h3>The Shawshank Redemption</h3><p></p></div>
+    <div class="poster reveal"><img src="images/tbhx.jpg" class="poster-img" alt=""><span class="type">Series</span><h3>To Be Hero X</h3><p></p></div>
+    <div class="poster reveal"><img src="images/cpe.jpg" class="poster-img" alt=""><span class="type">Series</span><h3>Cyberpunk: Edgerunners</h3><p></p></div>
+    <div class="poster reveal"><img src="images/phm.jpg" class="poster-img" alt=""><span class="type">Movie</span><h3>Project Hail Mary</h3><p></p></div>
+    <div class="poster reveal"><img src="images/demonc.jpg" class="poster-img" alt=""><span class="type">Movie</span><h3>Demon City</h3><p></p></div>
+    <div class="poster reveal"><img src="images/fnaf.jpg" class="poster-img" alt=""><span class="type">Movie</span><h3>Fnaf</h3><p></p></div>
   </div>
 </section>
 
 <section id="music">
   <div class="sec-head reveal">
     <div>
-      <span class="kicker mono">04 // Jarvis tolong anuin spotify biar premium lifetime</span>
+      <span class="kicker mono">04 // </span>
       <h2>Music &amp; Artists</h2>
     </div>
     <div class="rule"></div>
@@ -565,32 +573,32 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
     </div>
 
     <div class="track-list active" id="tab-fav-song">
-      <div class="track reveal"><span class="idx mono">01</span><div><span class="title">Louise</span><span class="artist">Tv Girl</span></div><span class="tag">favorite</span><span class="len mono">3:15</span></div>
-      <div class="track reveal"><span class="idx mono">02</span><div><span class="title">Fake Plastic Trees</span><span class="artist">Radiohead</span></div><span class="tag">favorite</span><span class="len mono">4:50</span></div>
-      <div class="track reveal"><span class="idx mono">03</span><div><span class="title">Merry Christmas, Please Dont Call</span><span class="artist">Bleachers</span></div><span class="tag">favorite</span><span class="len mono">3:22</span></div>
-      <div class="track reveal"><span class="idx mono">04</span><div><span class="title">Isha's Song (这样很好)</span><span class="artist">Eason Chan</span></div><span class="tag">favorite</span><span class="len mono">4:22</span></div>
-      <div class="track reveal"><span class="idx mono">05</span><div><span class="title">If I Had A Gun</span><span class="artist">Noel Gallagher</span></div><span class="tag">favorite</span><span class="len mono">4:47</span></div>
-      <div class="track reveal"><span class="idx mono">06</span><div><span class="title">Enough For You</span><span class="artist">Reality Club</span></div><span class="tag">favorite</span><span class="len mono">3:59</span></div>
-      <div class="track reveal"><span class="idx mono">07</span><div><span class="title">Killer Queen</span><span class="artist">Queen</span></div><span class="tag">favorite</span><span class="len mono">3:12</span></div>
-      <div class="track reveal"><span class="idx mono">08</span><div><span class="title">Virus Tipe Hati</span><span class="artist">Jkt48</span></div><span class="tag">favorite</span><span class="len mono">3:56</span></div>
-      <div class="track reveal"><span class="idx mono">09</span><div><span class="title">Russian Roulette</span><span class="artist">Red Velvet</span></div><span class="tag">favorite</span><span class="len mono">3:32</span></div>
-      <div class="track reveal"><span class="idx mono">10</span><div><span class="title">Heartbreak, Heartbreak</span><span class="artist">Shihoko Hirata</span></div><span class="tag">favorite</span><span class="len mono">2:16</span></div>
+      <div class="track reveal"><span class="idx mono">01</span><div><span class="title">Louise</span><span class="artist">Tv Girl</span></div><span class="len mono">3:15</span></div>
+      <div class="track reveal"><span class="idx mono">02</span><div><span class="title">Fake Plastic Trees</span><span class="artist">Radiohead</span></div><span class="len mono">4:50</span></div>
+      <div class="track reveal"><span class="idx mono">03</span><div><span class="title">Merry Christmas, Please Dont Call</span><span class="artist">Bleachers</span></div><span class="len mono">3:22</span></div>
+      <div class="track reveal"><span class="idx mono">04</span><div><span class="title">Isha's Song (这样很好)</span><span class="artist">Eason Chan</span></div><span class="len mono">4:22</span></div>
+      <div class="track reveal"><span class="idx mono">05</span><div><span class="title">If I Had A Gun</span><span class="artist">Noel Gallagher</span></div><span class="len mono">4:47</span></div>
+      <div class="track reveal"><span class="idx mono">06</span><div><span class="title">Enough For You</span><span class="artist">Reality Club</span></div><span class="len mono">3:59</span></div>
+      <div class="track reveal"><span class="idx mono">07</span><div><span class="title">Killer Queen</span><span class="artist">Queen</span></div><span class="len mono">3:12</span></div>
+      <div class="track reveal"><span class="idx mono">08</span><div><span class="title">Virus Tipe Hati</span><span class="artist">Jkt48</span></div><span class="len mono">3:56</span></div>
+      <div class="track reveal"><span class="idx mono">09</span><div><span class="title">Russian Roulette</span><span class="artist">Red Velvet</span></div><span class="len mono">3:32</span></div>
+      <div class="track reveal"><span class="idx mono">10</span><div><span class="title">Heartbreak, Heartbreak</span><span class="artist">Shihoko Hirata</span></div><span class="len mono">2:16</span></div>
       <div class="track reveal"><span class="idx mono">—</span><div><span class="title">Honorable mention</span><span class="artist"></span></div></div>
-      <div class="track reveal"><span class="idx mono">1</span><div><span class="title">Radio</span><span class="artist">Bershy</span></div><span class="tag">favorite</span><span class="len mono">3:22</span></div>
-      <div class="track reveal"><span class="idx mono">2</span><div><span class="title">Christmas Kids</span><span class="artist">Roar</span></div><span class="tag">favorite</span><span class="len mono">2:16</span></div>
-      <div class="track reveal"><span class="idx mono">3</span><div><span class="title">I Really Wanna Stay At Your House</span><span class="artist">Rosa Walton</span></div><span class="tag">favorite</span><span class="len mono">4:07</span></div>
-      <div class="track reveal"><span class="idx mono">4</span><div><span class="title">L!!!!ght</span><span class="artist">Wuthering Waves</span></div><span class="tag">favorite</span><span class="len mono">3:10</span></div>
+      <div class="track reveal"><span class="idx mono">1</span><div><span class="title">Radio</span><span class="artist">Bershy</span></div><span class="len mono">3:22</span></div>
+      <div class="track reveal"><span class="idx mono">2</span><div><span class="title">Christmas Kids</span><span class="artist">Roar</span></div><span class="len mono">2:16</span></div>
+      <div class="track reveal"><span class="idx mono">3</span><div><span class="title">I Really Wanna Stay At Your House</span><span class="artist">Rosa Walton</span></div><span class="len mono">4:07</span></div>
+      <div class="track reveal"><span class="idx mono">4</span><div><span class="title">L!!!!ght</span><span class="artist">Wuthering Waves</span></div><span class="len mono">3:10</span></div>
     </div>
 
     <div class="track-list" id="tab-fav-album">
-      <div class="track reveal"><span class="idx mono">01</span><div><span class="title">Radiohead</span><span class="artist">always top 1 since elementary school</span></div></div>
-      <div class="track reveal"><span class="idx mono">02</span><div><span class="title">Tv Girl</span><span class="artist">loved this since middle school</span></div></div>
-      <div class="track reveal"><span class="idx mono">03</span><div><span class="title">The Marias</span><span class="artist">just listened to this and omg i already fell in love w her voice</span></div></div>
-      <div class="track reveal"><span class="idx mono">04</span><div><span class="title">Red Velvet</span><span class="artist">my first ever korean girl band (yeri is so gorgeous tbh)</span></div></div>
-      <div class="track reveal"><span class="idx mono">05</span><div><span class="title">Queen</span><span class="artist">thanks to my dad for introducing me to this peak</span></div></div>
-      <div class="track reveal"><span class="idx mono">06</span><div><span class="title">Eleanor Whisper</span><span class="artist">PLZ JUST PLEASE DENGERIN LAGUNYA DLU</span></div></div>
-      <div class="track reveal"><span class="idx mono">07</span><div><span class="title">My Chemical Romance</span><span class="artist">man i wanna be an emo so bad bcs of this band back then</span></div></div>
-      <div class="track reveal"><span class="idx mono">08</span><div><span class="title">Reality Club</span><span class="artist">To hold back each other's true fate is not of our nature let's be mature</span></div></div>
+      <div class="track reveal"><span class="idx mono">01</span><div><span class="title">Radiohead</span><span class="artist"></span></div></div>
+      <div class="track reveal"><span class="idx mono">02</span><div><span class="title">Tv Girl</span><span class="artist"></span></div></div>
+      <div class="track reveal"><span class="idx mono">03</span><div><span class="title">The Marias</span><span class="artist"></span></div></div>
+      <div class="track reveal"><span class="idx mono">04</span><div><span class="title">Red Velvet</span><span class="artist"></span></div></div>
+      <div class="track reveal"><span class="idx mono">05</span><div><span class="title">Queen</span><span class="artist"></span></div></div>
+      <div class="track reveal"><span class="idx mono">06</span><div><span class="title">Eleanor Whisper</span><span class="artist"></span></div></div>
+      <div class="track reveal"><span class="idx mono">07</span><div><span class="title">My Chemical Romance</span><span class="artist"></span></div></div>
+      <div class="track reveal"><span class="idx mono">08</span><div><span class="title">Reality Club</span><span class="artist"></span></div></div>
     </div>
   </div>
 </section>
@@ -598,8 +606,8 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
 <section id="games">
   <div class="sec-head reveal">
     <div>
-      <span class="kicker mono">05 // pencet aja stats nya klo mw liat acc</span>
-      <h2>Games I Play</h2>
+      <span class="kicker mono">05 // </span>
+      <h2>Mobile Games</h2>
     </div>
     <div class="rule"></div>
   </div>
@@ -647,8 +655,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
           <div class="game-profile">
             <img src="images/df.jpg" alt="Delta Force profile">
             <div class="game-profile-inner">
-              <h4>SEVELLA</h4>
-              <p>QBZ MY GOAT</p>
+                 <h4>své</h4>
               <div class="flip-hint">Tap to return</div>
             </div>
           </div>
@@ -673,8 +680,6 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
           <div class="game-profile">
             <img src="images/hsr.jpg" alt="Honkai Star Rail profile">
             <div class="game-profile-inner">
-              <h4>UID 841783658</h4>
-              <p>March 7th my wife gw</p>
               <div class="flip-hint">Tap to return</div>
             </div>
           </div>
@@ -700,7 +705,6 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
             <img src="images/wuwa.jpg" alt="Wuthering Waves profile">
             <div class="game-profile-inner">
               <h4>UID 900252234</h4>
-              <p>akucintakurogem</p>
               <div class="flip-hint">Tap to return</div>
             </div>
           </div>
@@ -726,7 +730,6 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
             <img src="images/rblx.jpg" alt="Roblox profile">
             <div class="game-profile-inner">
               <h4>1onlysevl</h4>
-              <p>mabar bareng</p>
               <div class="flip-hint">Tap again to return</div>
             </div>
           </div>
@@ -740,14 +743,14 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
   <div class="sec-head reveal">
     <div>
       <span class="kicker mono">06 // </span>
-      <h2>PC Games I Played</h2>
+      <h2>Story Games</h2>
     </div>
     <div class="rule"></div>
   </div>
   <div class="poster-shelf">
-    <div class="poster reveal"><img src="images/rdr2.jpg" class="poster-img" alt=""><span class="type">Story · 10/10</span><h3>Red Dead Redemption 2</h3><p>Prolly the best game i've ever played imo, its just that perfect and memorable for me. Arthur Morgan, story, side characters, mechanics is just the best (luckily i played this game without any spoilers)</p></div>
-    <div class="poster reveal"><img src="images/cyberpunk.jpg" class="poster-img" alt=""><span class="type">Story · 9.5/10</span><h3>Cyberpunk 2077</h3><p>its not that good, but what makes me love this game is bcz i can kill adam smasher after he zeroed david. also thanks to johnny silverhand bcs hes just the goat</p></div>
-    <div class="poster reveal"><img src="images/mc.jpg" class="poster-img" alt=""><span class="type">Sandbox · 10/10</span><h3>Minecraft</h3><p>Best sandbox game ever made</p></div>
+    <div class="poster reveal"><img src="images/rdr2.jpg" class="poster-img" alt=""><span class="type">Story · 10/10</span><h3>Red Dead Redemption 2</h3><p></p></div>
+    <div class="poster reveal"><img src="images/cyberpunk.jpg" class="poster-img" alt=""><span class="type">Story · 9.5/10</span><h3>Cyberpunk 2077</h3><p></p></div>
+    <div class="poster reveal"><img src="images/mc.jpg" class="poster-img" alt=""><span class="type">Story · 10/10</span><h3>Assassin's Creed Black Flag Resynced</h3><p></p></div>
   </div>
 
   <div class="view-more-container reveal">
@@ -756,10 +759,10 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--black); outline-o
 
   <div id="more-games-wrap" class="more-games-wrap">
     <div class="more-games-grid">
-      <div class="poster square-poster"><img src="images/got.jpg" class="poster-img" alt=""><h3>Ghost of Tsushima </h3><p>Jin sakai my goat but sadly the game is kinda repetitive</p></div>
-      <div class="poster square-poster"><img src="images/gow.jpg" class="poster-img" alt=""><h3>God of War </h3><p>Kratos character development is way better than Arthur Morgan</p></div>
-      <div class="poster square-poster"><img src="images/007.jpg" class="poster-img" alt=""><h3>007 First Light </h3><p>This game story and mechanic is perfect, but i didnt quite like the ending</p></div>
-      <div class="poster square-poster"><img src="images/p5r.jpg" class="poster-img" alt=""><h3>Persona 5 Royal</h3><p>havent finished it yet</p></div>
+      <div class="poster square-poster"><img src="images/got.jpg" class="poster-img" alt=""><h3>Ghost of Tsushima </h3><p></p></div>
+      <div class="poster square-poster"><img src="images/gow.jpg" class="poster-img" alt=""><h3>God of War </h3><p></p></div>
+      <div class="poster square-poster"><img src="images/007.jpg" class="poster-img" alt=""><h3>007 First Light </h3><p></p></div>
+      <div class="poster square-poster"><img src="images/p5r.jpg" class="poster-img" alt=""><h3>Persona 5 Royal</h3><p></p></div>
     </div>
   </div>
 </section>
