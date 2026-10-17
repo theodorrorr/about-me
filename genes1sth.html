@@ -3,1088 +3,266 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>abtme — personal archive</title>
+<meta name="description" content="abtme — personal archive: hobbies, milestones, watchlist, music and games.">
+<meta name="theme-color" content="#090909">
+<title>abtme</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/face2.jpg" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg-base: #090909;
-  --bg-surface: #111111;
-  --bg-elevated: #181818;
-  --border-subtle: #222222;
-  --border-strong: #3a3a3a;
-  --text-primary: #f2f2ee;
-  --text-secondary: #a0a09c;
-  --text-muted: #63635e;
-  --accent-white: #ffffff;
-  
-  --font-display: 'Syne', sans-serif;
-  --font-serif: 'Instrument Serif', serif;
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  background-color: var(--bg-base);
-  color: var(--text-primary);
-}
-
-body {
-  font-family: var(--font-sans);
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-.mono {
-  font-family: var(--font-mono);
-}
-
-.serif-italic {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-}
-
-/* Tactile Film Grain Overlay */
-.noise-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-/* Architectural Top Navigation */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: rgba(9, 9, 9, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-subtle);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 4vw;
-  height: 60px;
-}
-
-.brand-mark {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-  background: var(--text-primary);
-  border-radius: 50%;
-  display: inline-block;
-  animation: pulse 2.5s infinite ease-in-out;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.25; }
-}
-
-.nav-links {
-  display: flex;
-  gap: 28px;
-}
-
-.nav-links a {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  transition: color 0.2s ease;
-  position: relative;
-  padding: 4px 0;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--text-primary);
-}
-
-.nav-links a.active::after {
-  content: "";
-  position: absolute;
-  bottom: -19px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--text-primary);
-}
-
-/* Editorial Hero Section */
-.hero {
-  min-height: 100vh;
-  padding: 60px 4vw 0;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  border-bottom: 1px solid var(--border-subtle);
-  position: relative;
-}
-
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 7vh 5vw 7vh 0;
-  border-right: 1px solid var(--border-subtle);
-}
-
-.hero-meta-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 18px;
-}
-
-.hero-title-wrap {
-  margin: auto 0;
-  padding: 40px 0;
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(3.8rem, 9vw, 8.2rem);
-  line-height: 0.88;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  color: var(--text-primary);
-}
-
-.hero-title .serif-word {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  text-transform: lowercase;
-  font-size: 1.12em;
-  letter-spacing: 0;
-  color: var(--text-secondary);
-}
-
-.hero-bio {
-  max-width: 520px;
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  line-height: 1.75;
-  font-weight: 400;
-}
-
-.hero-footer-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 24px;
-  border-top: 1px solid var(--border-subtle);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.hero-visual {
-  position: relative;
-  overflow: hidden;
-  background: var(--bg-surface);
-  display: flex;
-  align-items: flex-end;
-  padding: 32px;
-}
-
-.hero-visual-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(100%) contrast(1.1);
-  opacity: 0.75;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
-}
-
-.hero-visual:hover .hero-visual-img {
-  transform: scale(1.03);
-  opacity: 0.9;
-}
-
-.hero-visual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(9,9,9,0.9) 0%, rgba(9,9,9,0.2) 50%, rgba(9,9,9,0.4) 100%);
-}
-
-.visual-caption {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-secondary);
-  letter-spacing: 0.1em;
-}
-
-/* Global Section Layout */
-section {
-  padding: 110px 4vw;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.section-header {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 40px;
-  align-items: baseline;
-  margin-bottom: 64px;
-}
-
-.sec-index {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.sec-index::before {
-  content: "";
-  width: 18px;
-  height: 1px;
-  background: var(--text-muted);
-}
-
-.sec-title-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 20px;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.sec-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 3.4rem);
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-
-.sec-subtitle {
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* 01 // Hobbies Architectural Matrix */
-.hobby-matrix {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  border-top: 1px solid var(--border-subtle);
-  border-left: 1px solid var(--border-subtle);
-}
-
-.hobby-cell {
-  border-right: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 30px 26px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 250px;
-  background: var(--bg-base);
-  transition: background 0.25s ease, color 0.25s ease;
-  position: relative;
-}
-
-.hobby-cell:hover {
-  background: var(--text-primary);
-  color: var(--bg-base);
-}
-
-.hobby-cell-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 28px;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  transition: color 0.25s ease;
-}
-
-.hobby-cell:hover .hobby-cell-top {
-  color: #555550;
-}
-
-.hobby-cell h3 {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  margin-bottom: 12px;
-  letter-spacing: -0.01em;
-}
-
-.hobby-cell p {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  transition: color 0.25s ease;
-}
-
-.hobby-cell:hover p {
-  color: #2b2b29;
-}
-
-/* 02 // Achievements Archival Grid */
-.archive-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.archive-item {
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
-  display: flex;
-  flex-direction: column;
-  transition: border-color 0.3s ease;
-}
-
-.archive-item:hover {
-  border-color: var(--text-primary);
-}
-
-.archive-img-box {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-bottom: 1px solid var(--border-subtle);
-  background: #050505;
-}
-
-.archive-img-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(100%) contrast(1.08);
-  transition: filter 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.archive-item:hover .archive-img-box img {
-  filter: grayscale(0%) contrast(1);
-  transform: scale(1.04);
-}
-
-.archive-meta {
-  padding: 18px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.archive-yr {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  letter-spacing: 0.12em;
-}
-
-.archive-meta h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
-}
-
-/* 03 // Movies & Series Lookbook */
-.cinema-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-}
-
-.cinema-card {
-  position: relative;
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.cinema-card-header {
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--border-subtle);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.cinema-poster-wrap {
-  aspect-ratio: 2 / 3;
-  position: relative;
-  overflow: hidden;
-  background: #050505;
-}
-
-.cinema-poster-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(85%) contrast(1.08);
-  transition: filter 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.cinema-card:hover .cinema-poster-wrap img {
-  filter: grayscale(0%) contrast(1);
-  transform: scale(1.05);
-}
-
-.cinema-card-footer {
-  padding: 16px 14px;
-  border-top: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-
-.cinema-card-footer h3 {
-  font-size: 0.96rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-/* 04 // Interactive Audio Deck */
-.audio-console {
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
-  display: grid;
-  grid-template-columns: 340px 1fr;
-}
-
-.audio-sidebar {
-  border-right: 1px solid var(--border-subtle);
-  padding: 32px 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: var(--bg-base);
-}
-
-.audio-status-label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-   justify-content: space-between;
-  margin-bottom: 28px;
-}
-
-.eq-bars {
-  display: inline-flex;
-  align-items: flex-end;
-  gap: 3px;
-  height: 14px;
-}
-
-.eq-bars span {
-  width: 2px;
-  background: var(--text-primary);
-  animation: eq 1.2s ease-in-out infinite;
-}
-
-.eq-bars span:nth-child(1) { height: 60%; animation-delay: 0s; }
-.eq-bars span:nth-child(2) { height: 100%; animation-delay: 0.2s; }
-.eq-bars span:nth-child(3) { height: 40%; animation-delay: 0.4s; }
-.eq-bars span:nth-child(4) { height: 85%; animation-delay: 0.1s; }
-
-@keyframes eq {
-  0%, 100% { transform: scaleY(0.35); }
-  50% { transform: scaleY(1); }
-}
-
-.active-disc-box {
-  aspect-ratio: 1 / 1;
-  border: 1px solid var(--border-subtle);
-  background: radial-gradient(circle at center, #1f1f1f 0%, #0c0c0c 70%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  margin-bottom: 28px;
-}
-
-.disc-rings {
-  width: 78%;
-  height: 78%;
-  border-radius: 50%;
-  border: 1px dashed var(--border-strong);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: slowSpin 18s linear infinite;
-}
-
-.disc-core {
-  width: 28%;
-  height: 28%;
-  border-radius: 50%;
-  border: 1px solid var(--text-muted);
-  background: var(--bg-base);
-}
-
-@keyframes slowSpin {
-  to { transform: rotate(360deg); }
-}
-
-.active-track-readout .track-idx-badge {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  margin-bottom: 6px;
-  display: block;
-}
-
-.active-track-readout h3 {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  line-height: 1.15;
-  margin-bottom: 6px;
-  color: var(--text-primary);
-}
-
-.active-track-readout p {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-}
-
-.readout-bar {
-  margin-top: 22px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-subtle);
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-
-.audio-main {
-  display: flex;
-  flex-direction: column;
-}
-
-.console-tabs {
-  display: flex;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.console-tab {
-  flex: 1;
-  background: var(--bg-base);
-  color: var(--text-muted);
-  border: none;
-  border-right: 1px solid var(--border-subtle);
-  padding: 18px 24px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-align: left;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.console-tab:last-child {
-  border-right: none;
-}
-
-.console-tab:hover {
-  color: var(--text-primary);
-  background: var(--bg-surface);
-}
-
-.console-tab.active {
-  background: var(--text-primary);
-  color: var(--bg-base);
-  font-weight: 700;
-}
-
-.console-panel {
-  display: none;
-}
-
-.console-panel.active {
-  display: block;
-}
-
-.track-row {
-  display: grid;
-  grid-template-columns: 48px 1fr auto;
-  align-items: center;
-  padding: 14px 24px;
-  border-bottom: 1px solid var(--border-subtle);
-  cursor: pointer;
-  transition: background 0.15s ease, padding-left 0.2s ease;
-}
-
-.track-row:last-child {
-  border-bottom: none;
-}
-
-.track-row:hover {
-  background: var(--bg-elevated);
-  padding-left: 30px;
-}
-
-.track-row.playing {
-  background: #1d1d1b;
-}
-
-.track-row .t-num {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.track-row.playing .t-num {
-  color: var(--text-primary);
-}
-
-.track-row .t-main {
-  display: flex;
-  flex-direction: column;
-}
-
-.track-row .t-title {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--text-primary);
-}
-
-.track-row .t-artist {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-}
-
-.track-row .t-len {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.track-divider {
-  padding: 12px 24px;
-  background: var(--bg-base);
-  border-bottom: 1px solid var(--border-subtle);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.artist-roster-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.artist-cell {
-  padding: 28px 26px;
-  border-bottom: 1px solid var(--border-subtle);
-  border-right: 1px solid var(--border-subtle);
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  transition: background 0.2s ease;
-}
-
-.artist-cell:nth-child(2n) {
-  border-right: none;
-}
-
-.artist-cell:hover {
-  background: var(--bg-elevated);
-}
-
-.artist-cell .a-name {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  color: var(--text-primary);
-}
-
-.artist-cell .a-idx {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-}
-
-/* 05 // Game Dossiers */
-.dossier-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-  gap: 24px;
-}
-
-.dossier-card {
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.25s ease;
-}
-
-.dossier-card:hover {
-  border-color: var(--border-strong);
-}
-
-.dossier-top {
-  padding: 24px 24px 20px;
-  border-bottom: 1px solid var(--border-subtle);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.dossier-title {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-}
-
-.dossier-sub {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
-.status-pill {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  padding: 4px 10px;
-  border: 1px solid var(--border-strong);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.status-pill.active-pill {
-  background: var(--text-primary);
-  color: var(--bg-base);
-  border-color: var(--text-primary);
-  font-weight: 700;
-}
-
-.telemetry-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.telemetry-cell {
-  padding: 18px 14px;
-  border-right: 1px solid var(--border-subtle);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.telemetry-cell:last-child {
-  border-right: none;
-}
-
-.telemetry-val {
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.telemetry-lbl {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.dossier-drawer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  background: var(--bg-base);
-}
-
-.dossier-card.expanded .dossier-drawer {
-  max-height: 360px;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.drawer-inner {
-  padding: 18px 20px;
-}
-
-.drawer-img-wrap {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  border: 1px solid var(--border-subtle);
-  overflow: hidden;
-  cursor: zoom-in;
-  margin-bottom: 12px;
-}
-
-.drawer-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.drawer-img-wrap:hover img {
-  transform: scale(1.03);
-}
-
-.drawer-meta h4 {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.drawer-meta p {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-secondary);
-  margin-top: 2px;
-}
-
-.dossier-toggle-btn {
-  width: 100%;
-  background: transparent;
-  border: none;
-  color: var(--text-secondary);
-  padding: 14px 24px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.dossier-toggle-btn:hover {
-  background: var(--bg-elevated);
-  color: var(--text-primary);
-}
-
-/* Lightbox Modal for Account Screenshots */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: rgba(5, 5, 5, 0.92);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4vw;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-
-.lightbox.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.lightbox-img {
-  max-width: 90vw;
-  max-height: 85vh;
-  border: 1px solid var(--border-strong);
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 24px;
-  right: 32px;
-  background: var(--text-primary);
-  color: var(--bg-base);
-  border: none;
-  padding: 8px 16px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-/* Footer */
-footer {
-  padding: 64px 4vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-/* Scroll Reveal */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-}
-
-.reveal.in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Responsive Breakpoints */
-@media (max-width: 1100px) {
-  .hobby-matrix {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .archive-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .cinema-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .audio-console {
-    grid-template-columns: 1fr;
-  }
-  .audio-sidebar {
-    border-right: none;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-  .active-disc-box {
-    max-width: 200px;
-  }
-}
-
-@media (max-width: 820px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-  .hero-content {
-    border-right: none;
-    border-bottom: 1px solid var(--border-subtle);
-    padding-right: 0;
-  }
-  .hero-visual {
-    min-height: 380px;
-  }
-  .section-header {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .nav-links {
-    display: none;
-  }
-  .cinema-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .artist-roster-grid {
-    grid-template-columns: 1fr;
-  }
-  .artist-cell {
-    border-right: none;
-  }
-}
-
-@media (max-width: 540px) {
-  .hobby-matrix,
-  .archive-grid,
-  .cinema-grid {
-    grid-template-columns: 1fr;
-  }
+:root{
+  --bg:#090909;--surface:#111;--elev:#181818;
+  --line:#222;--line-strong:#3a3a3a;
+  --text:#f2f2ee;--text-2:#a0a09c;--muted:#63635e;
+  --display:'Syne',sans-serif;--serif:'Instrument Serif',serif;
+  --sans:'Plus Jakarta Sans',sans-serif;--mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg);color:var(--text)}
+body{font-family:var(--sans);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+
+/* Shared mono label style */
+.mono,.brand,.nav a,.hero-meta,.hero-foot,.caption,.sec-index,.sec-sub,.cell-top,.archive-yr,
+.cinema-head,.status-label,.readout-bar,.console-tab,.t-num,.t-len,.divider,.a-idx,
+.dossier-sub,.pill,.tele-val,.tele-lbl,.drawer-meta,.dossier-btn,.lightbox-close,footer{font-family:var(--mono)}
+.serif-italic{font-family:var(--serif);font-style:italic;font-weight:400}
+
+/* Film grain */
+.noise{position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* Scroll progress */
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:101;background:var(--text);transform:scaleX(0);transform-origin:0 50%}
+
+/* Header */
+.site-header{position:fixed;inset:0 0 auto;z-index:100;height:60px;padding:0 4vw;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(9,9,9,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.status-dot{width:7px;height:7px;background:var(--text);border-radius:50%;animation:pulse 2.5s infinite ease-in-out}
+@keyframes pulse{50%{opacity:.25}}
+.nav{display:flex;gap:28px}
+.nav a{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative;padding:4px 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:-19px;height:2px;background:var(--text);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav a:hover,.nav a.active{color:var(--text)}
+.nav a.active::after{transform:scaleX(1)}
+
+/* Hero */
+.hero{min-height:100vh;padding:60px 4vw 0;display:grid;grid-template-columns:1.15fr .85fr;border-bottom:1px solid var(--line)}
+.hero-content{display:flex;flex-direction:column;justify-content:space-between;padding:7vh 5vw 7vh 0;border-right:1px solid var(--line)}
+.hero-meta,.hero-foot{display:flex;justify-content:space-between;gap:12px;font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.hero-meta{align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px}
+.hero-foot{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);letter-spacing:.08em}
+.hero-title-wrap{margin:auto 0;padding:40px 0}
+.hero-title{font-family:var(--display);font-size:clamp(3.8rem,9vw,8.2rem);line-height:.88;letter-spacing:-.03em;text-transform:uppercase}
+.hero-title .line{display:block;overflow:hidden;padding-bottom:.08em}
+.hero-title .line>span{display:block;transform:translateY(105%);animation:rise 1.1s var(--ease) forwards}
+.hero-title .line:nth-child(2)>span{animation-delay:.12s}
+.serif-word{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:lowercase;font-size:1.12em;letter-spacing:0;color:var(--text-2)}
+@keyframes rise{to{transform:none}}
+.hero-bio{max-width:520px;font-size:1.05rem;color:var(--text-2);line-height:1.75}
+.hero-meta,.hero-bio,.hero-foot{opacity:0;animation:fade .9s .45s ease forwards}
+.hero-bio{animation-delay:.6s}.hero-foot{animation-delay:.75s}
+@keyframes fade{to{opacity:1}}
+.hero-foot span:first-child{animation:nudge 2s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateY(4px)}}
+
+.hero-visual{position:relative;overflow:hidden;background:var(--surface);display:flex;align-items:flex-end;padding:32px;clip-path:inset(0 0 100% 0);animation:wipe 1.2s .1s var(--ease) forwards}
+@keyframes wipe{to{clip-path:inset(0)}}
+.hero-img{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;filter:grayscale(1) contrast(1.1);opacity:.75;
+  transform:translate3d(0,var(--py,0px),0) scale(var(--s,1));transition:opacity .5s;will-change:transform}
+.hero-visual:hover .hero-img{opacity:.9;--s:1.03}
+.hero-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(9,9,9,.9),rgba(9,9,9,.2) 50%,rgba(9,9,9,.4))}
+.caption{position:relative;z-index:2;width:100%;display:flex;justify-content:space-between;align-items:flex-end;font-size:.7rem;color:var(--text-2);letter-spacing:.1em}
+
+/* Marquee */
+.marquee{overflow:hidden;border-bottom:1px solid var(--line);padding:18px 0;white-space:nowrap;background:var(--bg)}
+.marquee-track{display:inline-flex;gap:40px;animation:scroll 40s linear infinite;will-change:transform}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{font-family:var(--display);font-size:1.6rem;text-transform:uppercase;letter-spacing:-.01em;color:transparent;-webkit-text-stroke:1px var(--line-strong)}
+.marquee span:nth-child(even){font-family:var(--serif);font-style:italic;text-transform:lowercase;-webkit-text-stroke:0;color:var(--muted)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* Sections (offscreen sections skip rendering work) */
+section:not(.hero){padding:110px 4vw;border-bottom:1px solid var(--line);content-visibility:auto;contain-intrinsic-size:auto 800px}
+.section-header{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:baseline;margin-bottom:64px}
+.sec-index{font-size:.75rem;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.sec-index::before{content:"";width:18px;height:1px;background:var(--muted);transform:scaleX(0);transform-origin:left;transition:transform .8s .2s var(--ease)}
+.in .sec-index::before{transform:scaleX(1)}
+.sec-title-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px;padding-bottom:20px;position:relative}
+.sec-title-row::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line-strong);transform:scaleX(0);transform-origin:left;transition:transform 1.1s .15s var(--ease)}
+.in .sec-title-row::after{transform:scaleX(1)}
+.sec-title{font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);text-transform:uppercase;letter-spacing:-.02em;line-height:1}
+.sec-sub{font-size:.74rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+
+/* Hobbies */
+.hobby-matrix{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.hobby-cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 26px;display:flex;flex-direction:column;justify-content:space-between;min-height:250px;position:relative;overflow:hidden;
+  transition:background .25s,color .25s,opacity .6s var(--d,0s),transform .6s var(--d,0s)}
+.hobby-cell::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.09),transparent 70%)}
+.hobby-cell:hover::before{opacity:1}
+.hobby-cell:hover{background:var(--text);color:var(--bg)}
+.hobby-cell:hover::before{background:radial-gradient(240px circle at var(--mx) var(--my),rgba(0,0,0,.07),transparent 70%)}
+.cell-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;font-size:.68rem;letter-spacing:.1em;color:var(--muted);transition:color .25s}
+.hobby-cell:hover .cell-top{color:#555550}
+.hobby-cell h3{font-family:var(--display);font-size:1.25rem;margin-bottom:12px;letter-spacing:-.01em}
+.hobby-cell p{font-size:.88rem;color:var(--text-2);line-height:1.6;transition:color .25s}
+.hobby-cell:hover p{color:#2b2b29}
+
+/* Achievements + cinema shared card */
+.archive-grid,.cinema-grid{display:grid;gap:24px}
+.archive-grid{grid-template-columns:repeat(4,1fr)}
+.cinema-grid{grid-template-columns:repeat(5,1fr);gap:20px}
+.archive-item,.cinema-card{border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;overflow:hidden;
+  transition:border-color .3s,opacity .7s var(--d,0s),transform .7s var(--d,0s) var(--ease)}
+.archive-item:hover{border-color:var(--text)}
+.archive-img,.poster{position:relative;overflow:hidden;background:#050505}
+.archive-img{aspect-ratio:4/3;border-bottom:1px solid var(--line)}
+.poster{aspect-ratio:2/3}
+.archive-img img,.poster img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.08);transition:filter .4s,transform .6s var(--ease)}
+.poster img{filter:grayscale(.85) contrast(1.08)}
+.archive-item:hover img,.cinema-card:hover img{filter:none;transform:scale(1.05)}
+.archive-meta{padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.archive-yr{font-size:.68rem;color:var(--muted);letter-spacing:.12em}
+.archive-meta h3{font-size:1rem;font-weight:600;letter-spacing:-.01em}
+.cinema-head{padding:10px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.cinema-foot{padding:16px 14px;border-top:1px solid var(--line);flex:1;display:flex;align-items:center}
+.cinema-foot h3{font-size:.96rem;font-weight:600;line-height:1.3}
+
+/* Audio console */
+.audio-console{border:1px solid var(--line);background:var(--surface);display:grid;grid-template-columns:340px 1fr}
+.audio-sidebar{border-right:1px solid var(--line);padding:32px 28px;display:flex;flex-direction:column;justify-content:space-between;background:var(--bg)}
+.status-label{font-size:.68rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.eq{display:inline-flex;align-items:flex-end;gap:3px;height:14px}
+.eq span{width:2px;height:100%;background:var(--text);transform-origin:bottom;animation:eq 1.2s ease-in-out infinite}
+.eq span:nth-child(2){animation-delay:.2s}.eq span:nth-child(3){animation-delay:.4s}.eq span:nth-child(4){animation-delay:.1s}
+@keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+.disc{aspect-ratio:1;border:1px solid var(--line);background:radial-gradient(circle,#1f1f1f,#0c0c0c 70%);display:flex;align-items:center;justify-content:center;margin-bottom:28px}
+.disc-rings{width:78%;height:78%;border-radius:50%;border:1px dashed var(--line-strong);display:flex;align-items:center;justify-content:center;animation:spin 18s linear infinite}
+.disc-core{width:28%;height:28%;border-radius:50%;border:1px solid var(--muted);background:var(--bg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.readout{transition:opacity .2s,transform .2s}
+.readout.swap{opacity:0;transform:translateY(6px)}
+.readout .idx{font-family:var(--mono);font-size:.7rem;color:var(--muted);display:block;margin-bottom:6px}
+.readout h3{font-family:var(--display);font-size:1.5rem;line-height:1.15;margin-bottom:6px}
+.readout p{font-family:var(--mono);font-size:.82rem;color:var(--text-2)}
+.readout-bar{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted)}
+.audio-console.swapping .disc-rings{animation-duration:2s}
+.console-tabs{display:flex;border-bottom:1px solid var(--line)}
+.console-tab{flex:1;background:var(--bg);color:var(--muted);border:0;border-right:1px solid var(--line);padding:18px 24px;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;text-align:left;transition:background .2s,color .2s}
+.console-tab:last-child{border-right:0}
+.console-tab:hover{color:var(--text);background:var(--surface)}
+.console-tab.active{background:var(--text);color:var(--bg);font-weight:700}
+.console-panel{display:none}
+.console-panel.active{display:block;animation:fade .35s ease}
+.track-row{display:grid;grid-template-columns:48px 1fr auto;align-items:center;padding:14px 24px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .15s,padding-left .25s var(--ease)}
+.track-row:hover,.track-row:focus-visible{background:var(--elev);padding-left:32px}
+.track-row.playing{background:#1d1d1b}
+.t-num{font-size:.75rem;color:var(--muted)}
+.track-row.playing .t-num{color:var(--text)}
+.t-main{display:flex;flex-direction:column}
+.t-title{font-weight:600;font-size:.95rem}
+.t-artist{font-size:.78rem;color:var(--text-2)}
+.t-len{font-size:.75rem;color:var(--muted)}
+.divider{padding:12px 24px;background:var(--bg);border-bottom:1px solid var(--line);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.artist-grid{display:grid;grid-template-columns:repeat(2,1fr)}
+.artist-cell{padding:28px 26px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;transition:background .2s}
+.artist-cell:nth-child(2n){border-right:0}
+.artist-cell:hover{background:var(--elev)}
+.a-name{font-family:var(--display);font-size:1.3rem}
+.a-idx{font-size:.72rem;color:var(--muted)}
+
+/* Game dossiers */
+.dossier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:24px}
+.dossier-card{border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;
+  transition:border-color .25s,opacity .7s var(--d,0s),transform .7s var(--d,0s) var(--ease)}
+.dossier-card:hover{border-color:var(--line-strong)}
+.dossier-top{padding:24px 24px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.dossier-title{font-family:var(--display);font-size:1.4rem;text-transform:uppercase;letter-spacing:-.01em;line-height:1.1}
+.dossier-sub{font-size:.72rem;color:var(--muted);margin-top:4px}
+.pill{font-size:.65rem;letter-spacing:.1em;padding:4px 10px;border:1px solid var(--line-strong);text-transform:uppercase;white-space:nowrap}
+.pill.on{background:var(--text);color:var(--bg);border-color:var(--text);font-weight:700}
+.tele{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.tele>div{padding:18px 14px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.tele>div:last-child{border-right:0}
+.tele-val{font-size:1rem;font-weight:700}
+.tele-lbl{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+/* grid-rows trick: animates to the content's real height, no magic max-height */
+.drawer{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease);background:var(--bg)}
+.dossier-card.expanded .drawer{grid-template-rows:1fr;border-bottom:1px solid var(--line)}
+.drawer>div{overflow:hidden;min-height:0}
+.drawer-inner{padding:18px 20px}
+.drawer-img{position:relative;aspect-ratio:16/9;border:1px solid var(--line);overflow:hidden;cursor:zoom-in;margin-bottom:12px}
+.drawer-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.drawer-img:hover img{transform:scale(1.03)}
+.drawer-meta h4{font-size:.82rem;font-weight:600}
+.drawer-meta p{font-size:.72rem;color:var(--text-2);margin-top:2px}
+.dossier-btn{width:100%;background:transparent;border:0;color:var(--text-2);padding:14px 24px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:background .2s,color .2s}
+.dossier-btn:hover{background:var(--elev);color:var(--text)}
+.btn-icon{display:inline-block;transition:transform .4s var(--ease)}
+.expanded .btn-icon{transform:rotate(180deg)}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(5,5,5,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:4vw;opacity:0;pointer-events:none;transition:opacity .25s}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox-img{max-width:90vw;max-height:85vh;border:1px solid var(--line-strong);transform:scale(.96);transition:transform .35s var(--ease)}
+.lightbox.open .lightbox-img{transform:none}
+.lightbox-close{position:absolute;top:24px;right:32px;background:var(--text);color:var(--bg);border:0;padding:8px 16px;font-size:.75rem;cursor:pointer;text-transform:uppercase}
+
+footer{padding:64px 4vw;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--muted)}
+
+/* Scroll reveal (set per-element delay with --d) */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--d,0s),transform .7s var(--d,0s) var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.hobby-cell.reveal,.archive-item.reveal,.cinema-card.reveal,.dossier-card.reveal{transition-delay:var(--d,0s)}
+
+@media(max-width:1100px){
+  .hobby-matrix{grid-template-columns:repeat(2,1fr)}
+  .archive-grid{grid-template-columns:repeat(2,1fr)}
+  .cinema-grid{grid-template-columns:repeat(3,1fr)}
+  .audio-console{grid-template-columns:1fr}
+  .audio-sidebar{border-right:0;border-bottom:1px solid var(--line)}
+  .disc{max-width:200px}
+}
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .hero-content{border-right:0;border-bottom:1px solid var(--line);padding-right:0}
+  .hero-visual{min-height:380px}
+  .section-header{grid-template-columns:1fr;gap:12px}
+  .nav{display:none}
+  .cinema-grid{grid-template-columns:repeat(2,1fr)}
+  .artist-grid{grid-template-columns:1fr}
+  .artist-cell{border-right:0}
+}
+@media(max-width:540px){
+  .hobby-matrix,.archive-grid,.cinema-grid{grid-template-columns:1fr}
+  .dossier-grid{grid-template-columns:1fr}
+}
+@media(hover:none){.hobby-cell::before{display:none}}
+
+/* Respect users who prefer less motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal,.hero-title .line>span,.hero-meta,.hero-bio,.hero-foot{opacity:1;transform:none}
+  .hero-visual{clip-path:none}
 }
 </style>
 </head>
 <body>
 
-<div class="noise-overlay"></div>
+<div class="noise" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="site-header">
-  <div class="brand-mark">
-    <span class="status-dot"></span>
-    <span>ABTME // ARCHIVE</span>
-  </div>
-  <nav class="nav-links" id="topnav">
+  <div class="brand"><span class="status-dot"></span><span></span></div>
+  <nav class="nav" id="topnav" aria-label="Sections">
     <a href="#hobbies" data-t="hobbies">01. Interests</a>
     <a href="#achievements" data-t="achievements">02. Milestones</a>
     <a href="#media" data-t="media">03. Watchlist</a>
@@ -1093,333 +271,123 @@ footer {
   </nav>
 </header>
 
+<main>
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-meta-top">
-      <span>INDEX // PERSONAL DOSSIER</span>
-      <span>17 YO — HIGH SCHOOL STUDENT</span>
-    </div>
-
+    <div class="hero-meta"><span>Archive</span><span>17 YO — HIGH SCHOOL STUDENT</span></div>
     <div class="hero-title-wrap">
-      <h1 class="hero-title">ABOUT<br><span class="serif-word">me.</span></h1>
+      <h1 class="hero-title"><span class="line"><span>ABOUT</span></span><span class="line"><span><span class="serif-word">me.</span></span></span></h1>
     </div>
-
     <div>
-      <p class="hero-bio">
-        hiii, im a 17yo highschool student and i love to explore and learn lots of new things. and if you're interested, please scroll down! because i hope we share similar hobbies and interests to talk about in dms
-      </p>
-      <div class="hero-footer-bar" style="margin-top: 28px;">
-        <span>SCROLL TO EXPLORE ↓</span>
-        <span>REV // 2026</span>
-      </div>
+      <p class="hero-bio">hiii, im a 17yo highschool student and i love to explore and learn lots of new things. and if you're interested, please scroll down! because i hope we share similar hobbies and interests to talk about in dms</p>
+      <div class="hero-foot"><span>SCROLL TO EXPLORE ↓</span><span>2026</span></div>
     </div>
   </div>
-
-  <div class="hero-visual">
-    <img src="images/face2.jpg" alt="Portrait" class="hero-visual-img">
-    <div class="visual-caption">
-      <span>FIG 00. PORTRAIT</span>
-      <span>[ MONOCHROME ]</span>
-    </div>
+  <div class="hero-visual" id="heroVisual">
+    <img src="images/face2.jpg" alt="Portrait" class="hero-img" id="heroImg" width="900" height="1200" fetchpriority="high" decoding="async">
+    <div class="caption"><span>4K 120</span><span>[ Arveylth ]</span></div>
   </div>
 </section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Cooking</span><span>fishing</span><span>Gaming</span><span>archery</span><span>Astronomy</span><span>aviation</span><span>Geopolitics</span><span>stocks</span><span>Music</span><span>coding</span>
+    <span>Cooking</span><span>fishing</span><span>Gaming</span><span>archery</span><span>Astronomy</span><span>aviation</span><span>Geopolitics</span><span>stocks</span><span>Music</span><span>coding</span>
+  </div>
+</div>
 
 <section id="hobbies">
   <div class="section-header reveal">
     <div class="sec-index">01 // CATALOG</div>
-    <div class="sec-title-row">
-      <h2 class="sec-title">Hobbies &amp; <span class="serif-italic">Interests</span></h2>
-      <span class="sec-subtitle">10 ACTIVE DOMAINS</span>
-    </div>
+    <div class="sec-title-row"><h2 class="sec-title">Hobbies &amp; <span class="serif-italic">Interests</span></h2><span class="sec-sub">10 ACTIVE DOMAINS</span></div>
   </div>
-
   <div class="hobby-matrix">
-    <article class="hobby-cell reveal">
-      <div class="hobby-cell-top"><span>01</span><span>[ CULINARY ]</span></div>
-      <div>
-        <h3>Cooking</h3>
-        <p>i mostly cook western foods because i find it the easiest. my specialty is making homemade mushroom sauce for spaghetti and steaks.</p>
-      </div>
-    </article>
-
-    <article class="hobby-cell reveal">
-      <div class="hobby-cell-top"><span>02</span><span>[ OUTDOORS ]</span></div>
-      <div>
-        <h3>Fishing</h3>
-        <p>i enjoy the relaxed process of waiting for a bite. i rarely go fishing these days, since i prefer using my weekends to rest and rot all day on my bed.</p>
-      </div>
-    </article>
-
-    <article class="hobby-cell reveal">
-      <div class="hobby-cell-top"><span>03</span><span>[ INTERACTIVE ]</span></div>
-      <div>
-        <h3>Gaming</h3>
-        <p>i've explored a wide range of genres from narrative stories to competitive titles and enjoyed every single one.</p>
-      </div>
-    </article>
-
-    <article class="hobby-cell reveal">
-      <div class="hobby-cell-top"><span>04</span><span>[ PRECISION ]</span></div>
-      <div>
-        <h3>Archery</h3>
-        <p>still developing my skills through weekend practice.</p>
-      </div>
-    </article>
-
-    <article class="hobby-cell reveal">
-      <div class="hobby-cell-top"><span>05</span><span>[ COSMOS ]</span></div>
-      <div>
-        <h3>Astronomy</h3>
-        <p>always love learning about space missions and exploration because of my childhood dream of becoming an aerospace engineer or astronaut.</p>
-      </div>
-    </article>
-
-    <article class="hobby-cell reveal">
-      <div class="hobby-cell-top"><span>06</span><span>[ AEROSPACE ]</span></div>
-      <div>
-        <h3>Aviation &amp; Aircraft</h3>
-        <p>i have an interest in military aviation, particularly studying the technical specifications and design features of fighter jets and bombers.</p>
-      </div>
-    </article>
-
-    <article class="hobby-cell reveal">
-      <div class="hobby-cell-top"><span>07</span><span>[ WORLD AFFAIRS ]</span></div>
-      <div>
-        <h3>Geopolitics</h3>
-        <p>i closely follow global news and international relations, and still impressed by how geopolitics can affect our daily lives.</p>
-      </div>
-    </article>
-
-    <article class="hobby-cell reveal">
-      <div class="hobby-cell-top"><span>08</span><span>[ EQUITIES ]</span></div>
-      <div>
-        <h3>Stock Market</h3>
-        <p>Currently still learning about the fundamentals of equity markets and technical fundamental analysis.</p>
-      </div>
-    </article>
-
-    <article class="hobby-cell reveal">
-      <div class="hobby-cell-top"><span>09</span><span>[ SONIC ]</span></div>
-      <div>
-        <h3>Music</h3>
-        <p>i love every genre of music as long as it sounds good to me.</p>
-      </div>
-    </article>
-
-    <article class="hobby-cell reveal">
-      <div class="hobby-cell-top"><span>10</span><span>[ DEV ]</span></div>
-      <div>
-        <h3>Coding</h3>
-        <p>Building this website was a fun project, and i'm still working to improve and learn about programming</p>
-      </div>
-    </article>
+    <article class="hobby-cell reveal"><div class="cell-top"><span>01</span><span>[ CULINARY ]</span></div><div><h3>Cooking</h3><p>i mostly cook western foods because i find it the easiest. my specialty is making homemade mushroom sauce for spaghetti and steaks.</p></div></article>
+    <article class="hobby-cell reveal"><div class="cell-top"><span>02</span><span>[ OUTDOORS ]</span></div><div><h3>Fishing</h3><p>i enjoy the relaxed process of waiting for a bite. i rarely go fishing these days, since i prefer using my weekends to rest and rot all day on my bed.</p></div></article>
+    <article class="hobby-cell reveal"><div class="cell-top"><span>03</span><span>[ CASUAL ]</span></div><div><h3>Gaming</h3><p>i've explored a wide range of genres from narrative stories to competitive titles and enjoyed every single one.</p></div></article>
+    <article class="hobby-cell reveal"><div class="cell-top"><span>04</span><span>[ WANNABEODYSSEUS ]</span></div><div><h3>Archery</h3><p>still developing my skills through weekend practice.</p></div></article>
+    <article class="hobby-cell reveal"><div class="cell-top"><span>05</span><span>[ COSMOS ]</span></div><div><h3>Astronomy</h3><p>always love learning about space missions and exploration because of my childhood dream of becoming an aerospace engineer or astronaut.</p></div></article>
+    <article class="hobby-cell reveal"><div class="cell-top"><span>06</span><span>[ AEROSPACE ]</span></div><div><h3>Aviation &amp; Aircraft</h3><p>i have an interest in military aviation, particularly studying the technical specifications and design features of fighter jets and bombers.</p></div></article>
+    <article class="hobby-cell reveal"><div class="cell-top"><span>07</span><span>[ WORLD AFFAIRS ]</span></div><div><h3>Geopolitics</h3><p>i closely follow global news and international relations, and still impressed by how geopolitics can affect our daily lives.</p></div></article>
+    <article class="hobby-cell reveal"><div class="cell-top"><span>08</span><span>[ EQUITIES ]</span></div><div><h3>Stock Market</h3><p>Currently still learning about the fundamentals of equity markets and technical fundamental analysis.</p></div></article>
+    <article class="hobby-cell reveal"><div class="cell-top"><span>09</span><span>[ #1LISTENER ]</span></div><div><h3>Music</h3><p>i love every genre of music as long as it sounds good to me.</p></div></article>
+    <article class="hobby-cell reveal"><div class="cell-top"><span>10</span><span>[ DEV ]</span></div><div><h3>Coding</h3><p>Building this website was a fun project, and i'm still working to improve and learn about programming</p></div></article>
   </div>
 </section>
 
 <section id="achievements">
   <div class="section-header reveal">
     <div class="sec-index">02 // MILESTONES</div>
-    <div class="sec-title-row">
-      <h2 class="sec-title">Highschool <span class="serif-italic">Achievements</span></h2>
-      <span class="sec-subtitle">2024 — 2025 RECORD</span>
-    </div>
+    <div class="sec-title-row"><h2 class="sec-title">Highschool <span class="serif-italic">Achievements</span></h2><span class="sec-subtitle sec-sub">2024 — 2025 RECORD</span></div>
   </div>
-
   <div class="archive-grid">
-    <article class="archive-item reveal">
-      <div class="archive-img-box"><img src="images/3.jpg" alt="Paskibra 17 Agustus 2025"></div>
-      <div class="archive-meta">
-        <span class="archive-yr">[ 2025 // RECORD 01 ]</span>
-        <h3>Paskibra 17 Agustus 2025</h3>
-      </div>
-    </article>
-
-    <article class="archive-item reveal">
-      <div class="archive-img-box"><img src="images/4.jpg" alt="Pengurus MPK 2024/2025"></div>
-      <div class="archive-meta">
-        <span class="archive-yr">[ 2025 // RECORD 02 ]</span>
-        <h3>Pengurus MPK 2024/2025</h3>
-      </div>
-    </article>
-
-    <article class="archive-item reveal">
-      <div class="archive-img-box"><img src="images/2.jpg" alt="Sekolah Pasar Modal"></div>
-      <div class="archive-meta">
-        <span class="archive-yr">[ 2025 // RECORD 03 ]</span>
-        <h3>Sekolah Pasar Modal</h3>
-      </div>
-    </article>
-
-    <article class="archive-item reveal">
-      <div class="archive-img-box"><img src="images/1.jpg" alt="Paskibra 17 Agustus 2024"></div>
-      <div class="archive-meta">
-        <span class="archive-yr">[ 2024 // RECORD 04 ]</span>
-        <h3>Paskibra 17 Agustus 2024</h3>
-      </div>
-    </article>
+    <article class="archive-item reveal"><div class="archive-img"><img src="images/3.jpg" alt="Paskibra 17 Agustus 2025" loading="lazy" decoding="async" width="800" height="600"></div><div class="archive-meta"><span class="archive-yr">[ 2025 // RECORD 01 ]</span><h3>Paskibra 17 Agustus 2025</h3></div></article>
+    <article class="archive-item reveal"><div class="archive-img"><img src="images/4.jpg" alt="Pengurus MPK 2024/2025" loading="lazy" decoding="async" width="800" height="600"></div><div class="archive-meta"><span class="archive-yr">[ 2025 // RECORD 02 ]</span><h3>Pengurus MPK 2024/2025</h3></div></article>
+    <article class="archive-item reveal"><div class="archive-img"><img src="images/2.jpg" alt="Sekolah Pasar Modal" loading="lazy" decoding="async" width="800" height="600"></div><div class="archive-meta"><span class="archive-yr">[ 2025 // RECORD 03 ]</span><h3>Sekolah Pasar Modal</h3></div></article>
+    <article class="archive-item reveal"><div class="archive-img"><img src="images/1.jpg" alt="Paskibra 17 Agustus 2024" loading="lazy" decoding="async" width="800" height="600"></div><div class="archive-meta"><span class="archive-yr">[ 2024 // RECORD 04 ]</span><h3>Paskibra 17 Agustus 2024</h3></div></article>
   </div>
 </section>
 
 <section id="media">
   <div class="section-header reveal">
     <div class="sec-index">03 // SCREENINGS</div>
-    <div class="sec-title-row">
-      <h2 class="sec-title">Movies &amp; <span class="serif-italic">Series</span></h2>
-      <span class="sec-subtitle">CURATED ROTATION</span>
-    </div>
+    <div class="sec-title-row"><h2 class="sec-title">Movies &amp; <span class="serif-italic">Series</span></h2><span class="sec-sub">CURATED ROTATION</span></div>
   </div>
-
   <div class="cinema-grid">
-    <article class="cinema-card reveal">
-      <div class="cinema-card-header"><span>01</span><span>SERIES</span></div>
-      <div class="cinema-poster-wrap"><img src="images/arcane.jpg" alt="Arcane"></div>
-      <div class="cinema-card-footer"><h3>Arcane</h3></div>
-    </article>
-
-    <article class="cinema-card reveal">
-      <div class="cinema-card-header"><span>02</span><span>MOVIE</span></div>
-      <div class="cinema-poster-wrap"><img src="images/shaw.jpg" alt="The Shawshank Redemption"></div>
-      <div class="cinema-card-footer"><h3>The Shawshank Redemption</h3></div>
-    </article>
-
-    <article class="cinema-card reveal">
-      <div class="cinema-card-header"><span>03</span><span>SERIES</span></div>
-      <div class="cinema-poster-wrap"><img src="images/tbhx.jpg" alt="To Be Hero X"></div>
-      <div class="cinema-card-footer"><h3>To Be Hero X</h3></div>
-    </article>
-
-    <article class="cinema-card reveal">
-      <div class="cinema-card-header"><span>04</span><span>SERIES</span></div>
-      <div class="cinema-poster-wrap"><img src="images/cpe.jpg" alt="Cyberpunk: Edgerunners"></div>
-      <div class="cinema-card-footer"><h3>Cyberpunk: Edgerunners</h3></div>
-    </article>
-
-    <article class="cinema-card reveal">
-      <div class="cinema-card-header"><span>05</span><span>MOVIE</span></div>
-      <div class="cinema-poster-wrap"><img src="images/phm.jpg" alt="Project Hail Mary"></div>
-      <div class="cinema-card-footer"><h3>Project Hail Mary</h3></div>
-    </article>
+    <article class="cinema-card reveal"><div class="cinema-head"><span>01</span><span>SERIES</span></div><div class="poster"><img src="images/arcane.jpg" alt="Arcane" loading="lazy" decoding="async" width="400" height="600"></div><div class="cinema-foot"><h3>Arcane</h3></div></article>
+    <article class="cinema-card reveal"><div class="cinema-head"><span>02</span><span>MOVIE</span></div><div class="poster"><img src="images/shaw.jpg" alt="The Shawshank Redemption" loading="lazy" decoding="async" width="400" height="600"></div><div class="cinema-foot"><h3>The Shawshank Redemption</h3></div></article>
+    <article class="cinema-card reveal"><div class="cinema-head"><span>03</span><span>SERIES</span></div><div class="poster"><img src="images/tbhx.jpg" alt="To Be Hero X" loading="lazy" decoding="async" width="400" height="600"></div><div class="cinema-foot"><h3>To Be Hero X</h3></div></article>
+    <article class="cinema-card reveal"><div class="cinema-head"><span>04</span><span>SERIES</span></div><div class="poster"><img src="images/cpe.jpg" alt="Cyberpunk: Edgerunners" loading="lazy" decoding="async" width="400" height="600"></div><div class="cinema-foot"><h3>Cyberpunk: Edgerunners</h3></div></article>
+    <article class="cinema-card reveal"><div class="cinema-head"><span>05</span><span>MOVIE</span></div><div class="poster"><img src="images/phm.jpg" alt="Project Hail Mary" loading="lazy" decoding="async" width="400" height="600"></div><div class="cinema-foot"><h3>Project Hail Mary</h3></div></article>
+    <article class="cinema-card reveal"><div class="cinema-head"><span>06</span><span>SERIES</span></div><div class="poster"><img src="images/lanterns.jpg" alt="Lanterns" loading="lazy" decoding="async" width="400" height="600"></div><div class="cinema-foot"><h3>Lanterns</h3></div></article>
   </div>
 </section>
 
 <section id="music">
   <div class="section-header reveal">
     <div class="sec-index">04 // ROTATION</div>
-    <div class="sec-title-row">
-      <h2 class="sec-title">Music &amp; <span class="serif-italic">Artists</span></h2>
-      <span class="sec-subtitle">CLICK ANY TRACK TO INSPECT</span>
-    </div>
+    <div class="sec-title-row"><h2 class="sec-title">Music &amp; <span class="serif-italic">Artists</span></h2><span class="sec-sub">CLICK ANY TRACK TO INSPECT</span></div>
   </div>
-
-  <div class="audio-console reveal">
+  <div class="audio-console reveal" id="console">
     <aside class="audio-sidebar">
       <div>
-        <div class="audio-status-label">
-          <span>SELECTED TRACK</span>
-          <div class="eq-bars"><span></span><span></span><span></span><span></span></div>
-        </div>
-        <div class="active-disc-box">
-          <div class="disc-rings">
-            <div class="disc-core"></div>
-          </div>
-        </div>
+        <div class="status-label"><span>SELECTED TRACK</span><div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></div></div>
+        <div class="disc" aria-hidden="true"><div class="disc-rings"><div class="disc-core"></div></div></div>
       </div>
-
-      <div class="active-track-readout">
-        <span class="track-idx-badge" id="player-idx">TRACK // 01</span>
-        <h3 id="player-title">Louise</h3>
-        <p id="player-artist">Tv Girl</p>
-        <div class="readout-bar">
-          <span>DURATION</span>
-          <span id="player-len">3:15</span>
-        </div>
+      <div class="readout" id="readout" aria-live="polite">
+        <span class="idx" id="p-idx">TRACK // 01</span>
+        <h3 id="p-title">Louise</h3>
+        <p id="p-artist">Tv Girl</p>
+        <div class="readout-bar"><span>DURATION</span><span id="p-len">3:15</span></div>
       </div>
     </aside>
 
-    <div class="audio-main">
-      <div class="console-tabs">
-        <button class="console-tab active" data-target="tab-fav-song">01 // Fav Songs (14)</button>
-        <button class="console-tab" data-target="tab-fav-album">02 // Fav Artists (08)</button>
+    <div>
+      <div class="console-tabs" role="tablist">
+        <button class="console-tab active" role="tab" aria-selected="true" data-target="tab-songs">01 // Fav Songs (14)</button>
+        <button class="console-tab" role="tab" aria-selected="false" data-target="tab-artists">02 // Fav Artists (08)</button>
       </div>
 
-      <div class="console-panel active" id="tab-fav-song">
-        <div class="track-row playing" data-idx="01" data-title="Louise" data-artist="Tv Girl" data-len="3:15">
-          <span class="t-num">01</span>
-          <div class="t-main"><span class="t-title">Louise</span><span class="t-artist">Tv Girl</span></div>
-          <span class="t-len">3:15</span>
-        </div>
-        <div class="track-row" data-idx="02" data-title="Fake Plastic Trees" data-artist="Radiohead" data-len="4:50">
-          <span class="t-num">02</span>
-          <div class="t-main"><span class="t-title">Fake Plastic Trees</span><span class="t-artist">Radiohead</span></div>
-          <span class="t-len">4:50</span>
-        </div>
-        <div class="track-row" data-idx="03" data-title="Merry Christmas, Please Dont Call" data-artist="Bleachers" data-len="3:22">
-          <span class="t-num">03</span>
-          <div class="t-main"><span class="t-title">Merry Christmas, Please Dont Call</span><span class="t-artist">Bleachers</span></div>
-          <span class="t-len">3:22</span>
-        </div>
-        <div class="track-row" data-idx="04" data-title="Isha's Song (这样很好)" data-artist="Eason Chan" data-len="4:22">
-          <span class="t-num">04</span>
-          <div class="t-main"><span class="t-title">Isha's Song (这样很好)</span><span class="t-artist">Eason Chan</span></div>
-          <span class="t-len">4:22</span>
-        </div>
-        <div class="track-row" data-idx="05" data-title="Heavy" data-artist="The Marias" data-len="4:13">
-          <span class="t-num">05</span>
-          <div class="t-main"><span class="t-title">Heavy</span><span class="t-artist">The Marias</span></div>
-          <span class="t-len">4:13</span>
-        </div>
-        <div class="track-row" data-idx="06" data-title="Enough For You" data-artist="Reality Club" data-len="3:59">
-          <span class="t-num">06</span>
-          <div class="t-main"><span class="t-title">Enough For You</span><span class="t-artist">Reality Club</span></div>
-          <span class="t-len">3:59</span>
-        </div>
-        <div class="track-row" data-idx="07" data-title="Killer Queen" data-artist="Queen" data-len="3:12">
-          <span class="t-num">07</span>
-          <div class="t-main"><span class="t-title">Killer Queen</span><span class="t-artist">Queen</span></div>
-          <span class="t-len">3:12</span>
-        </div>
-        <div class="track-row" data-idx="08" data-title="Virus Tipe Hati" data-artist="Jkt48" data-len="3:56">
-          <span class="t-num">08</span>
-          <div class="t-main"><span class="t-title">Virus Tipe Hati</span><span class="t-artist">Jkt48</span></div>
-          <span class="t-len">3:56</span>
-        </div>
-        <div class="track-row" data-idx="09" data-title="Russian Roulette" data-artist="Red Velvet" data-len="3:32">
-          <span class="t-num">09</span>
-          <div class="t-main"><span class="t-title">Russian Roulette</span><span class="t-artist">Red Velvet</span></div>
-          <span class="t-len">3:32</span>
-        </div>
-        <div class="track-row" data-idx="10" data-title="Heartbreak, Heartbreak" data-artist="Shihoko Hirata" data-len="2:16">
-          <span class="t-num">10</span>
-          <div class="t-main"><span class="t-title">Heartbreak, Heartbreak</span><span class="t-artist">Shihoko Hirata</span></div>
-          <span class="t-len">2:16</span>
-        </div>
-
-        <div class="track-divider">// Honorable Mentions</div>
-
-        <div class="track-row" data-idx="HM-01" data-title="Radio" data-artist="Bershy" data-len="3:22">
-          <span class="t-num">01</span>
-          <div class="t-main"><span class="t-title">Radio</span><span class="t-artist">Bershy</span></div>
-          <span class="t-len">3:22</span>
-        </div>
-        <div class="track-row" data-idx="HM-02" data-title="Christmas Kids" data-artist="Roar" data-len="2:16">
-          <span class="t-num">02</span>
-          <div class="t-main"><span class="t-title">Christmas Kids</span><span class="t-artist">Roar</span></div>
-          <span class="t-len">2:16</span>
-        </div>
-        <div class="track-row" data-idx="HM-03" data-title="I Really Wanna Stay At Your House" data-artist="Rosa Walton" data-len="4:07">
-          <span class="t-num">03</span>
-          <div class="t-main"><span class="t-title">I Really Wanna Stay At Your House</span><span class="t-artist">Rosa Walton</span></div>
-          <span class="t-len">4:07</span>
-        </div>
-        <div class="track-row" data-idx="HM-04" data-title="L!!!!ght" data-artist="Wuthering Waves" data-len="3:10">
-          <span class="t-num">04</span>
-          <div class="t-main"><span class="t-title">L!!!!ght</span><span class="t-artist">Wuthering Waves</span></div>
-          <span class="t-len">3:10</span>
-        </div>
+      <div class="console-panel active" id="tab-songs" role="tabpanel">
+        <div class="track-row playing" tabindex="0" role="button" data-idx="01" data-title="Louise" data-artist="Tv Girl" data-len="3:15"><span class="t-num">01</span><div class="t-main"><span class="t-title">Louise</span><span class="t-artist">Tv Girl</span></div><span class="t-len">3:15</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="02" data-title="Fake Plastic Trees" data-artist="Radiohead" data-len="4:50"><span class="t-num">02</span><div class="t-main"><span class="t-title">Fake Plastic Trees</span><span class="t-artist">Radiohead</span></div><span class="t-len">4:50</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="03" data-title="Merry Christmas, Please Dont Call" data-artist="Bleachers" data-len="3:22"><span class="t-num">03</span><div class="t-main"><span class="t-title">Merry Christmas, Please Dont Call</span><span class="t-artist">Bleachers</span></div><span class="t-len">3:22</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="04" data-title="Isha's Song (这样很好)" data-artist="Eason Chan" data-len="4:22"><span class="t-num">04</span><div class="t-main"><span class="t-title">Isha's Song (这样很好)</span><span class="t-artist">Eason Chan</span></div><span class="t-len">4:22</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="05" data-title="Heavy" data-artist="The Marias" data-len="4:13"><span class="t-num">05</span><div class="t-main"><span class="t-title">Heavy</span><span class="t-artist">The Marias</span></div><span class="t-len">4:13</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="06" data-title="Enough For You" data-artist="Reality Club" data-len="3:59"><span class="t-num">06</span><div class="t-main"><span class="t-title">Enough For You</span><span class="t-artist">Reality Club</span></div><span class="t-len">3:59</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="07" data-title="Killer Queen" data-artist="Queen" data-len="3:12"><span class="t-num">07</span><div class="t-main"><span class="t-title">Killer Queen</span><span class="t-artist">Queen</span></div><span class="t-len">3:12</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="08" data-title="Virus Tipe Hati" data-artist="Jkt48" data-len="3:56"><span class="t-num">08</span><div class="t-main"><span class="t-title">Virus Tipe Hati</span><span class="t-artist">Jkt48</span></div><span class="t-len">3:56</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="09" data-title="Russian Roulette" data-artist="Red Velvet" data-len="3:32"><span class="t-num">09</span><div class="t-main"><span class="t-title">Russian Roulette</span><span class="t-artist">Red Velvet</span></div><span class="t-len">3:32</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="10" data-title="Heartbreak, Heartbreak" data-artist="Shihoko Hirata" data-len="2:16"><span class="t-num">10</span><div class="t-main"><span class="t-title">Heartbreak, Heartbreak</span><span class="t-artist">Shihoko Hirata</span></div><span class="t-len">2:16</span></div>
+        <div class="divider">// Honorable Mentions</div>
+        <div class="track-row" tabindex="0" role="button" data-idx="HM-01" data-title="Radio" data-artist="Bershy" data-len="3:22"><span class="t-num">01</span><div class="t-main"><span class="t-title">Radio</span><span class="t-artist">Bershy</span></div><span class="t-len">3:22</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="HM-02" data-title="Christmas Kids" data-artist="Roar" data-len="2:16"><span class="t-num">02</span><div class="t-main"><span class="t-title">Christmas Kids</span><span class="t-artist">Roar</span></div><span class="t-len">2:16</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="HM-03" data-title="I Really Wanna Stay At Your House" data-artist="Rosa Walton" data-len="4:07"><span class="t-num">03</span><div class="t-main"><span class="t-title">I Really Wanna Stay At Your House</span><span class="t-artist">Rosa Walton</span></div><span class="t-len">4:07</span></div>
+        <div class="track-row" tabindex="0" role="button" data-idx="HM-04" data-title="L!!!!ght" data-artist="Wuthering Waves" data-len="3:10"><span class="t-num">04</span><div class="t-main"><span class="t-title">L!!!!ght</span><span class="t-artist">Wuthering Waves</span></div><span class="t-len">3:10</span></div>
       </div>
 
-      <div class="console-panel" id="tab-fav-album">
-        <div class="artist-roster-grid">
+      <div class="console-panel" id="tab-artists" role="tabpanel">
+        <div class="artist-grid">
           <div class="artist-cell"><span class="a-name">Radiohead</span><span class="a-idx">ARTIST // 01</span></div>
           <div class="artist-cell"><span class="a-name">Tv Girl</span><span class="a-idx">ARTIST // 02</span></div>
           <div class="artist-cell"><span class="a-name">The Marias</span><span class="a-idx">ARTIST // 03</span></div>
@@ -1436,283 +404,229 @@ footer {
 
 <section id="games">
   <div class="section-header reveal">
-    <div class="sec-index">05 // TELEMETRY</div>
-    <div class="sec-title-row">
-      <h2 class="sec-title">Gaming <span class="serif-italic">Dossiers</span></h2>
-      <span class="sec-subtitle">EXPAND ANY CARD FOR ACCOUNT PROOF</span>
-    </div>
+    <div class="sec-index">05 // Addict</div>
+    <div class="sec-title-row"><h2 class="sec-title">Game <span class="serif-italic">Addict</span></h2><span class="sec-sub">EXPAND ANY CARD FOR ACCOUNT PROOF</span></div>
   </div>
-
   <div class="dossier-grid">
-    <!-- Mobile Legends -->
     <article class="dossier-card reveal">
       <div>
-        <div class="dossier-top">
-          <div>
-            <h3 class="dossier-title">Mobile Legends</h3>
-            <p class="dossier-sub">Jungler Main</p>
-          </div>
-          <span class="status-pill">○ RETIRED</span>
-        </div>
-        <div class="telemetry-row">
-          <div class="telemetry-cell"><span class="telemetry-val">Suyou</span><span class="telemetry-lbl">Fav Hero</span></div>
-          <div class="telemetry-cell"><span class="telemetry-val">121</span><span class="telemetry-lbl">Highest Rank</span></div>
-          <div class="telemetry-cell"><span class="telemetry-val">75%</span><span class="telemetry-lbl">Fav Hero WR</span></div>
+        <div class="dossier-top"><div><h3 class="dossier-title">Mobile Legends</h3><p class="dossier-sub">Jungler Main</p></div><span class="pill">○ RETIRED</span></div>
+        <div class="tele">
+          <div><span class="tele-val">Suyou</span><span class="tele-lbl">Fav Hero</span></div>
+          <div><span class="tele-val" data-count="121">121</span><span class="tele-lbl">Highest Rank</span></div>
+          <div><span class="tele-val" data-count="75" data-suffix="%">75%</span><span class="tele-lbl">Fav Hero WR</span></div>
         </div>
       </div>
-
       <div>
-        <div class="dossier-drawer">
-          <div class="drawer-inner">
-            <div class="drawer-img-wrap"><img src="images/mlbb.jpg" alt="Mobile Legends profile"></div>
-            <div class="drawer-meta">
-              <h4>Mechanic Error.</h4>
-              <p>(im using my friend's big bro account rn) • Jungler Main</p>
-            </div>
-          </div>
-        </div>
-        <button class="dossier-toggle-btn">
-          <span class="btn-txt">Inspect Account</span>
-          <span class="btn-icon">+</span>
-        </button>
+        <div class="drawer"><div><div class="drawer-inner">
+          <div class="drawer-img"><img src="images/mlbb.jpg" alt="Mobile Legends profile" loading="lazy" decoding="async"></div>
+          <div class="drawer-meta"><h4>Mechanic Error.</h4><p>(im using my friend's big bro account rn) • Jungler Main</p></div>
+        </div></div></div>
+        <button class="dossier-btn" aria-expanded="false"><span class="btn-txt">Inspect Account</span><span class="btn-icon">+</span></button>
       </div>
     </article>
 
-    <!-- Delta Force -->
     <article class="dossier-card reveal">
       <div>
-        <div class="dossier-top">
-          <div>
-            <h3 class="dossier-title">Delta Force</h3>
-            <p class="dossier-sub">Tactical Operations</p>
-          </div>
-          <span class="status-pill active-pill">● ACTIVE</span>
-        </div>
-        <div class="telemetry-row">
-          <div class="telemetry-cell"><span class="telemetry-val">1209</span><span class="telemetry-lbl">Score/Min</span></div>
-          <div class="telemetry-cell"><span class="telemetry-val">Marshal 24</span><span class="telemetry-lbl">Highest Rank</span></div>
-          <div class="telemetry-cell"><span class="telemetry-val">Vyron</span><span class="telemetry-lbl">Fav Operator</span></div>
+        <div class="dossier-top"><div><h3 class="dossier-title">Delta Force</h3><p class="dossier-sub">Tactical Operations</p></div><span class="pill on">● ACTIVE</span></div>
+        <div class="tele">
+          <div><span class="tele-val" data-count="1209">1209</span><span class="tele-lbl">Score/Min</span></div>
+          <div><span class="tele-val">Marshal 24</span><span class="tele-lbl">Highest Rank</span></div>
+          <div><span class="tele-val">Vyron</span><span class="tele-lbl">Fav Operator</span></div>
         </div>
       </div>
-
       <div>
-        <div class="dossier-drawer">
-          <div class="drawer-inner">
-            <div class="drawer-img-wrap"><img src="images/df.jpg" alt="Delta Force profile"></div>
-            <div class="drawer-meta">
-              <h4>své</h4>
-            </div>
-          </div>
-        </div>
-        <button class="dossier-toggle-btn">
-          <span class="btn-txt">Inspect Account</span>
-          <span class="btn-icon">+</span>
-        </button>
+        <div class="drawer"><div><div class="drawer-inner">
+          <div class="drawer-img"><img src="images/df.jpg" alt="Delta Force profile" loading="lazy" decoding="async"></div>
+          <div class="drawer-meta"><h4>své</h4></div>
+        </div></div></div>
+        <button class="dossier-btn" aria-expanded="false"><span class="btn-txt">Inspect Account</span><span class="btn-icon">+</span></button>
       </div>
     </article>
 
-    <!-- Honkai Star Rail -->
     <article class="dossier-card reveal">
       <div>
-        <div class="dossier-top">
-          <div>
-            <h3 class="dossier-title">Honkai Star Rail</h3>
-            <p class="dossier-sub">just sold it recently</p>
-          </div>
-          <span class="status-pill">× SOLD</span>
-        </div>
-        <div class="telemetry-row">
-          <div class="telemetry-cell"><span class="telemetry-val">70</span><span class="telemetry-lbl">TL</span></div>
-          <div class="telemetry-cell"><span class="telemetry-val">March 7th</span><span class="telemetry-lbl">Fav Character</span></div>
-          <div class="telemetry-cell"><span class="telemetry-val">A8 35</span><span class="telemetry-lbl">Currency Wars</span></div>
+        <div class="dossier-top"><div><h3 class="dossier-title">Honkai Star Rail</h3><p class="dossier-sub">just sold it recently</p></div><span class="pill">× SOLD</span></div>
+        <div class="tele">
+          <div><span class="tele-val" data-count="70">70</span><span class="tele-lbl">TL</span></div>
+          <div><span class="tele-val">March 7th</span><span class="tele-lbl">Fav Character</span></div>
+          <div><span class="tele-val">A8 35</span><span class="tele-lbl">Currency Wars</span></div>
         </div>
       </div>
-
       <div>
-        <div class="dossier-drawer">
-          <div class="drawer-inner">
-            <div class="drawer-img-wrap"><img src="images/hsr.jpg" alt="Honkai Star Rail profile"></div>
-            <div class="drawer-meta">
-              <h4>Archived Profile</h4>
-            </div>
-          </div>
-        </div>
-        <button class="dossier-toggle-btn">
-          <span class="btn-txt">Inspect Account</span>
-          <span class="btn-icon">+</span>
-        </button>
+        <div class="drawer"><div><div class="drawer-inner">
+          <div class="drawer-img"><img src="images/hsr.jpg" alt="Honkai Star Rail profile" loading="lazy" decoding="async"></div>
+          <div class="drawer-meta"><h4>Archived Profile</h4></div>
+        </div></div></div>
+        <button class="dossier-btn" aria-expanded="false"><span class="btn-txt">Inspect Account</span><span class="btn-icon">+</span></button>
       </div>
     </article>
 
-    <!-- Wuthering Waves -->
     <article class="dossier-card reveal">
       <div>
-        <div class="dossier-top">
-          <div>
-            <h3 class="dossier-title">Wuthering Waves</h3>
-            <p class="dossier-sub">UID 900252234</p>
-          </div>
-          <span class="status-pill active-pill">● ACTIVE</span>
-        </div>
-        <div class="telemetry-row">
-          <div class="telemetry-cell"><span class="telemetry-val">66</span><span class="telemetry-lbl">Union Level</span></div>
-          <div class="telemetry-cell"><span class="telemetry-val">Lupa</span><span class="telemetry-lbl">Fav Character</span></div>
-          <div class="telemetry-cell"><span class="telemetry-val">Rinascita</span><span class="telemetry-lbl">Fav Region</span></div>
+        <div class="dossier-top"><div><h3 class="dossier-title">Wuthering Waves</h3><p class="dossier-sub">UID 900252234</p></div><span class="pill on">● ACTIVE</span></div>
+        <div class="tele">
+          <div><span class="tele-val" data-count="66">66</span><span class="tele-lbl">Union Level</span></div>
+          <div><span class="tele-val">Lupa</span><span class="tele-lbl">Fav Character</span></div>
+          <div><span class="tele-val">Rinascita</span><span class="tele-lbl">Fav Region</span></div>
         </div>
       </div>
-
       <div>
-        <div class="dossier-drawer">
-          <div class="drawer-inner">
-            <div class="drawer-img-wrap"><img src="images/wuwa.jpg" alt="Wuthering Waves profile"></div>
-            <div class="drawer-meta">
-              <h4>UID 900252234</h4>
-            </div>
-          </div>
-        </div>
-        <button class="dossier-toggle-btn">
-          <span class="btn-txt">Inspect Account</span>
-          <span class="btn-icon">+</span>
-        </button>
+        <div class="drawer"><div><div class="drawer-inner">
+          <div class="drawer-img"><img src="images/wuwa.jpg" alt="Wuthering Waves profile" loading="lazy" decoding="async"></div>
+          <div class="drawer-meta"><h4>UID 900252234</h4></div>
+        </div></div></div>
+        <button class="dossier-btn" aria-expanded="false"><span class="btn-txt">Inspect Account</span><span class="btn-icon">+</span></button>
       </div>
     </article>
 
-    <!-- Roblox -->
     <article class="dossier-card reveal">
       <div>
-        <div class="dossier-top">
-          <div>
-            <h3 class="dossier-title">Roblox</h3>
-            <p class="dossier-sub">just played the game</p>
-          </div>
-          <span class="status-pill">◇ CASUAL</span>
-        </div>
-        <div class="telemetry-row">
-          <div class="telemetry-cell"><span class="telemetry-val">S</span><span class="telemetry-lbl">—</span></div>
-          <div class="telemetry-cell"><span class="telemetry-val">V</span><span class="telemetry-lbl">—</span></div>
-          <div class="telemetry-cell"><span class="telemetry-val">E</span><span class="telemetry-lbl">—</span></div>
+        <div class="dossier-top"><div><h3 class="dossier-title">Pc Games</h3><p class="dossier-sub">Mostly Story Games</p></div><span class="pill">◇ CASUAL</span></div>
+        <div class="tele">
+          <div><span class="tele-val">S</span><span class="tele-lbl">—</span></div>
+          <div><span class="tele-val">V</span><span class="tele-lbl">—</span></div>
+          <div><span class="tele-val">E</span><span class="tele-lbl">—</span></div>
         </div>
       </div>
-
       <div>
-        <div class="dossier-drawer">
-          <div class="drawer-inner">
-            <div class="drawer-img-wrap"><img src="images/rblx.jpg" alt="Roblox profile"></div>
-            <div class="drawer-meta">
-              <h4>1onlysevl</h4>
-            </div>
-          </div>
-        </div>
-        <button class="dossier-toggle-btn">
-          <span class="btn-txt">Inspect Account</span>
-          <span class="btn-icon">+</span>
-        </button>
+        <div class="drawer"><div><div class="drawer-inner">
+          <div class="drawer-img"><img src="images/all.jpg" alt="Pc Games profile" loading="lazy" decoding="async"></div>
+          <div class="drawer-meta"><h4>gimme sum recommendations plz</h4></div>
+        </div></div></div>
+        <button class="dossier-btn" aria-expanded="false"><span class="btn-txt">Inspect Account</span><span class="btn-icon">+</span></button>
       </div>
     </article>
   </div>
 </section>
+</main>
 
-<!-- Image Lightbox Modal -->
-<div class="lightbox" id="lightbox">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded screenshot">
   <button class="lightbox-close" id="lightbox-close">Close [ESC]</button>
   <img src="" alt="Expanded view" class="lightbox-img" id="lightbox-img">
 </div>
 
-<footer>
-  <span>END OF ARCHIVE</span>
-  <span>:3</span>
-</footer>
+<footer><span>already know me better?</span><span>:3</span></footer>
 
 <script>
-// 1. Scroll Reveal Observer
-const revealEls = document.querySelectorAll('.reveal');
-const revealIO = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-      revealIO.unobserve(entry.target);
+(() => {
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 1. Scroll reveal, with stagger based on position inside each grid */
+  $$('.hobby-matrix,.archive-grid,.cinema-grid,.dossier-grid').forEach(grid => {
+    const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length || 1;
+    [...grid.children].forEach((el, i) => el.style.setProperty('--d', `${(i % cols) * 0.07}s`));
+  });
+
+  const countUp = el => {
+    const end = +el.dataset.count, suffix = el.dataset.suffix || '';
+    if (reduce) return;
+    const t0 = performance.now(), dur = 1100;
+    const tick = now => {
+      const p = Math.min((now - t0) / dur, 1);
+      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+      target.classList.add('in');
+      $$('[data-count]', target).forEach(countUp);
+      io.unobserve(target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+  $$('.reveal').forEach(el => io.observe(el));
+
+  /* 2. Nav highlight: one observer, band across the middle of the viewport */
+  const links = $$('#topnav a');
+  const navIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(l => l.classList.toggle('active', l.dataset.t === e.target.id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach(l => { const s = document.getElementById(l.dataset.t); if (s) navIO.observe(s); });
+
+  /* 3. Scroll progress + hero parallax (single rAF-throttled handler) */
+  const bar = $('#progress'), img = $('#heroImg'), hero = $('#heroVisual');
+  let ticking = false;
+  const onScroll = () => {
+    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    if (!reduce && y < innerHeight) img.style.setProperty('--py', `${y * 0.12}px`);
+    ticking = false;
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  /* 4. Cursor spotlight on hobby cells (delegated, rAF-free: only writes 2 CSS vars) */
+  $('.hobby-matrix').addEventListener('pointermove', e => {
+    const cell = e.target.closest('.hobby-cell');
+    if (!cell) return;
+    const r = cell.getBoundingClientRect();
+    cell.style.setProperty('--mx', `${e.clientX - r.left}px`);
+    cell.style.setProperty('--my', `${e.clientY - r.top}px`);
+  }, { passive: true });
+
+  /* 5. Music console: tabs + track selection (delegated) */
+  const consoleEl = $('#console'), readout = $('#readout');
+  consoleEl.addEventListener('click', e => {
+    const tab = e.target.closest('.console-tab');
+    if (tab) {
+      $$('.console-tab').forEach(t => { const on = t === tab; t.classList.toggle('active', on); t.setAttribute('aria-selected', on); });
+      $$('.console-panel').forEach(p => p.classList.toggle('active', p.id === tab.dataset.target));
+      return;
     }
-  });
-}, { threshold: 0.1 });
-revealEls.forEach(el => revealIO.observe(el));
-
-// 2. Top Navigation Active Highlight
-const navLinks = document.querySelectorAll('#topnav a');
-const sections = Array.from(navLinks).map(l => document.getElementById(l.dataset.t));
-const navIO = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(l => l.classList.remove('active'));
-      const activeLink = document.querySelector(`#topnav a[data-t="${entry.target.id}"]`);
-      if (activeLink) activeLink.classList.add('active');
-    }
-  });
-}, { threshold: 0.3 });
-sections.forEach(s => { if (s) navIO.observe(s); });
-
-// 3. Music Console Tabs & Interactive Track Selection
-const consoleTabs = document.querySelectorAll('.console-tab');
-const consolePanels = document.querySelectorAll('.console-panel');
-consoleTabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    consoleTabs.forEach(t => t.classList.remove('active'));
-    consolePanels.forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById(tab.dataset.target).classList.add('active');
-  });
-});
-
-const trackRows = document.querySelectorAll('.track-row');
-const playerIdx = document.getElementById('player-idx');
-const playerTitle = document.getElementById('player-title');
-const playerArtist = document.getElementById('player-artist');
-const playerLen = document.getElementById('player-len');
-
-trackRows.forEach(row => {
-  row.addEventListener('click', () => {
-    trackRows.forEach(r => r.classList.remove('playing'));
+    const row = e.target.closest('.track-row');
+    if (!row) return;
+    $$('.track-row.playing').forEach(r => r.classList.remove('playing'));
     row.classList.add('playing');
-    playerIdx.textContent = `TRACK // ${row.dataset.idx}`;
-    playerTitle.textContent = row.dataset.title;
-    playerArtist.textContent = row.dataset.artist;
-    playerLen.textContent = row.dataset.len;
+    readout.classList.add('swap');
+    consoleEl.classList.add('swapping');
+    setTimeout(() => {
+      $('#p-idx').textContent = `TRACK // ${row.dataset.idx}`;
+      $('#p-title').textContent = row.dataset.title;
+      $('#p-artist').textContent = row.dataset.artist;
+      $('#p-len').textContent = row.dataset.len;
+      readout.classList.remove('swap');
+      setTimeout(() => consoleEl.classList.remove('swapping'), 500);
+    }, reduce ? 0 : 180);
   });
-});
-
-// 4. Game Dossier Accordion Drawers
-document.querySelectorAll('.dossier-card').forEach(card => {
-  const btn = card.querySelector('.dossier-toggle-btn');
-  const txt = btn.querySelector('.btn-txt');
-  const icon = btn.querySelector('.btn-icon');
-
-  btn.addEventListener('click', () => {
-    const isOpen = card.classList.toggle('expanded');
-    txt.textContent = isOpen ? 'Hide Account' : 'Inspect Account';
-    icon.textContent = isOpen ? '−' : '+';
+  consoleEl.addEventListener('keydown', e => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('track-row')) { e.preventDefault(); e.target.click(); }
   });
-});
 
-// 5. Fullscreen Screenshot Lightbox
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxClose = document.getElementById('lightbox-close');
+  /* 6. Dossier drawers + lightbox (delegated) */
+  const lb = $('#lightbox'), lbImg = $('#lightbox-img'), lbClose = $('#lightbox-close');
+  let lastFocus = null;
+  const closeLb = () => { lb.classList.remove('open'); lastFocus && lastFocus.focus(); };
 
-document.querySelectorAll('.drawer-img-wrap img').forEach(img => {
-  img.addEventListener('click', (e) => {
-    e.stopPropagation();
-    lightboxImg.src = img.src;
-    lightbox.classList.add('open');
+  $('.dossier-grid').addEventListener('click', e => {
+    const btn = e.target.closest('.dossier-btn');
+    if (btn) {
+      const open = btn.closest('.dossier-card').classList.toggle('expanded');
+      btn.setAttribute('aria-expanded', open);
+      $('.btn-txt', btn).textContent = open ? 'Hide Account' : 'Inspect Account';
+      $('.btn-icon', btn).textContent = open ? '−' : '+';
+      return;
+    }
+    const shot = e.target.closest('.drawer-img img');
+    if (shot) {
+      lastFocus = document.activeElement;
+      lbImg.src = shot.currentSrc || shot.src;
+      lb.classList.add('open');
+      lbClose.focus();
+    }
   });
-});
-
-lightboxClose.addEventListener('click', () => lightbox.classList.remove('open'));
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) lightbox.classList.remove('open');
-});
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') lightbox.classList.remove('open');
-});
+  lbClose.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('open')) closeLb(); });
+})();
 </script>
-
 </body>
 </html>
